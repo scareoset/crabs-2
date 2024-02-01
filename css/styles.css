@@ -1,0 +1,66 @@
+/*
+  site colors:
+    black         #121517
+    black accent  #242a2e
+    white         #fafaff
+ */
+body {
+    background-color: #121517;
+    color: #fafaff;
+}
+
+div.crabs {
+    width: 20%;
+    float: left;
+    text-align: left;
+    font-size: 24px;
+    border-style: solid;
+    border-color: #242a2e;
+    border-width: 2px;
+    border-radius: 16px;
+    padding: 8px;
+}
+
+div.actions {
+    width: 20%;
+    float: left;
+    text-align: left;
+    font-size: 24px;
+    border-style: solid;
+    border-color: #242a2e;
+    border-width: 2px;
+    border-radius: 16px;
+    padding: 8px;
+}
+
+div.shop {
+    width: 20%;
+    float: left;
+    text-align: left;
+    font-size: 24px;
+    border-style: solid;
+    border-color: #242a2e;
+    border-width: 2px;
+    border-radius: 16px;
+    padding: 8px;
+}
+
+div.consoleBlock {
+    width: 20%;
+    height: 100%;
+    overflow-y: hidden;
+    float: left;
+    text-align: left;
+    font-size: 24px;
+    border-style: solid;
+    border-color: #242a2e;
+    border-width: 2px;
+    border-radius: 16px;
+    padding: 8px;
+}
+
+button {
+    border: none;
+    background-color: inherit;
+    font-size: 36px;
+}

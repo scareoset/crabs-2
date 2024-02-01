@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>crab clicker</title>
+    <link rel="shortcut icon" type="image/jpg" href="assets/favicon_io/favicon.ico" />
+    <style>
+    /*
+      site colors:
+        black         #121517
+        black accent  #242a2e
+        white         #fafaff
+     */
+    body {
+      background-color: #121517;
+      color: #fafaff;
+    }
+
+    div.crabs {
+      width: auto;
+      width-max: 50%;
+      float: left;
+      text-align: left;
+      font-size: 24px;
+      border-style: solid;
+      border-color: #242a2e;
+      border-width: 2px;
+      border-radius: 16px;
+      padding: 8px;
+    }
+
+    div.consoleBlock {
+      width: 25%;
+      height: 275px;
+      overflow: scroll;
+      float: right;
+      text-align: left;
+      font-size: 24px;
+      border-style: solid;
+      border-color: #242a2e;
+      border-width: 2px;
+      border-radius: 16px;
+      padding: 8px;
+    }
+
+    button {
+      border: none;
+      background-color: inherit;
+      font-size: 36px;
+    }
+    </style>
+</head>
+
+<body>
+  <div class="crabs">
+    <p id="crabCount">crabs: 1/10</p>
+    <p id="moneyCount">money: $0 ($1/second)</p>
+
+    <button class="crab" onclick="makeCrab()">&#129408;</button> get crab <span id="crabCost">($5)</span>
+    <br>
+    <button class="space" onclick="addSpace()">&#128230;</button> add space <span id="spaceCost">($25)</span>
+    <br>
+    <button class="crabUpgrade" onclick="upgradeCrab()">♋︎</button> upgrade crab <span id="crabUpgradeCost">($100)</span>
+  </div>
+
+  <div class="consoleBlock" id="consoleBlock">
+    <p>you like crabs.</p>
+  </div>
+
+    <script>
+    var crabBlock = document.getElementById("crabCount");
+    var moneyBlock = document.getElementById("moneyCount");
+    var spaceBlock = document.getElementById("spaceCount");
+    var crabCostBlock = document.getElementById("crabCost");
+    var crabUpgradeCostBlock = document.getElementById("crabUpgradeCost");
+    var spaceCostBlock = document.getElementById("spaceCost");
+    var consoleBlock = document.getElementById("consoleBlock");
+    var crabs = 1;
+    var crabCost = 5;
+    var spaceCost = 25;
+    var space = 10;
+    var spacePurchases = 0;
+    var money = 0;
+    var incomeRate = 1;
+    var crabBonus = false;
+    var crabUpgradeCost = 100;
+    var incomeScale = 1;
+
+
+    setInterval(updatePage, 1000);
+
+    function updatePage() {
+      addMoney(incomeRate * incomeScale);
+    }
+
+    function consoleLog(log) {
+      let newText = "<p>" + log + "</p>";
+      consoleBlock.innerHTML = newText + consoleBlock.innerHTML;
+    }
+
+    function addMoney(amt) {
+      money += amt;
+      moneyBlock.innerHTML = "money: $" + money + " ($" + incomeRate * incomeScale + "/second)";
+    }
+
+    function upgradeCrab() {
+      if(money > crabUpgradeCost - 1) {
+        addMoney(-crabUpgradeCost);
+        incomeScale++;
+        crabUpgradeCost += Math.floor(Math.pow(1.0001, crabUpgradeCost));
+        crabUpgradeCostBlock.innerHTML = "($" + crabUpgradeCost + ")";
+      } else {
+        consoleLog("not enough money!");
+      }
+    }
+
+    function makeCrab() {
+      if(crabs < space) {
+        if(money > crabCost - 1) {
+          addMoney(-crabCost);
+          crabs++;
+          incomeRate++;
+          if(crabs === 10) {
+            crabBonus = true;
+          }
+          crabCost += Math.floor(Math.pow(1.0001, crabCost));
+          crabBlock.innerHTML = "crabs: " + crabs + "/" + space;
+          crabCostBlock.innerHTML = "($" + crabCost + ")";
+        } else {
+          consoleLog("not enough money!");
+        }
+      } else {
+        consoleLog("not enough space!");
+      }
+    }
+
+    function addSpace() {
+      if (money > spaceCost - 1) {
+        addMoney(-spaceCost);
+        space++;
+        spaceCost += Math.floor(Math.pow(1.0001, spaceCost));
+        crabBlock.innerHTML = "crabs: " + crabs + "/" + space;
+        spaceCostBlock.innerHTML = "($" + spaceCost + ")";
+      } else {
+        consoleLog("not enough money!");
+      }
+    }
+
+    </script>
+</body>
+
+</html>

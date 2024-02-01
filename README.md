@@ -11,7 +11,9 @@
 ## synopsis
 
 the general concept of *crab clicker* is:
+
 > idle/incremental games explore the limits of infinite growth and tend to result in cosmic endgames
+
 what if, instead of building up into space exploration, there was a game that explored the depths of the oceans? my gut instinct is to play with carcinization as a theme. the deeper you go, the more things have evolved into a crab form. the more you delve, the more ***you*** become crab-like.
 
 ## stages of play
